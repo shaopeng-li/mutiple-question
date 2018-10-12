@@ -90,7 +90,6 @@ class QuestionSet extends Component {
 
         return (
             <div>
-                <p>This is question set component</p>
                 <button onClick={this.prevHandler}>Left</button>
                 <p>Step {this.state.currentQuestion} of {this.state.questionSet.length}</p>
                 <button onClick={this.nextHandler}>Right</button>

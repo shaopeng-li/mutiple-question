@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import QuestionSet from './containers/questionSet';
 import LandingPage from './components/LandingPage';
 
 class App extends Component {
   startAnswerQuestion = () => {
-    console.log('button has been clicked!');
+    this.props.history.push('/assignment');
   }
 
   render() {
     return (
       <div className="App">
-        <LandingPage start={this.startAnswerQuestion} />
-        <QuestionSet />
+        <Switch>
+          <Route path='/' exact render={() => (<LandingPage start={this.startAnswerQuestion} />)} />
+          <Route path='/assignment' component={QuestionSet} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
