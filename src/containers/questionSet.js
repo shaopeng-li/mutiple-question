@@ -35,7 +35,8 @@ class QuestionSet extends Component {
         ],
         currentQuestion: 1,
         answers: [],
-        showScore: false 
+        showScore: false,
+        score: 0 
     }
 
     chooseAnswerHandler = (answer) => {
@@ -47,14 +48,14 @@ class QuestionSet extends Component {
         rsQuestionSet[this.state.currentQuestion - 1] = rsQuestion;
         let rsAnswer = [...this.state.answers];
         rsAnswer[this.state.currentQuestion - 1] = rsQuestion.answer === rsQuestion.selected ? rsQuestion.point : 0;
-        this.setState({ questionSet: rsQuestionSet, answers: rsAnswer });
+        this.setState({ questionSet: rsQuestionSet, answers: rsAnswer, showScore: false });
         this.nextHandler();
     }
 
     prevHandler = () => {
         if (this.state.currentQuestion > 1) {
             this.setState((state, props) => {
-                return { currentQuestion: state.currentQuestion - 1 };
+                return { currentQuestion: state.currentQuestion - 1, showScore: false };
             });
         }
     }
@@ -62,9 +63,17 @@ class QuestionSet extends Component {
     nextHandler = () => {
         if (this.state.currentQuestion < this.state.questionSet.length) {
             this.setState((state, props) => {
-                return { currentQuestion: state.currentQuestion + 1 };
+                return { currentQuestion: state.currentQuestion + 1, showScore: false };
             });
         }
+    }
+
+    showScoreClickHandler = () => {
+        let score = this.state.answers.reduce((acc, curr) => { return acc + curr; });
+        this.setState({
+            showScore: true,
+            score: score
+        });
     }
 
     render() {
@@ -72,10 +81,10 @@ class QuestionSet extends Component {
         let scoreButton = null;
         let scoreBoard = null;
         if (this.state.currentQuestion === this.state.questionSet.length) {
-            scoreButton = <button onClick={() => this.setState({showScore: true})}>Show my score</button>
+            scoreButton = <button onClick={this.showScoreClickHandler}>Show my score</button>
         }
         if (this.state.showScore) {
-            scoreBoard = <p>{() => this.state.answers.reduce((acc, curr) => acc + curr)}</p>
+            scoreBoard = <p>{this.state.score}</p>
         }
 
 
