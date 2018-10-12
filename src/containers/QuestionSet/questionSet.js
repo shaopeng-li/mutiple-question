@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Question from '../components/question';
+import Question from '../../components/Question/question';
+import classes from './questionSet.module.css';
 
 class QuestionSet extends Component {
     state = {

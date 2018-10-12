@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import QuestionSet from './containers/questionSet';
-import LandingPage from './components/LandingPage';
+import QuestionSet from './containers/QuestionSet/questionSet';
+import LandingPage from './components/Landing/LandingPage';
 
 class App extends Component {
   startAnswerQuestion = () => {
