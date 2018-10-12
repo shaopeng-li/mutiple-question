@@ -34,29 +34,62 @@ class QuestionSet extends Component {
             }
         ],
         currentQuestion: 1,
-        answers: [] 
+        answers: [],
+        showScore: false 
     }
 
     chooseAnswerHandler = (answer) => {
-        
+        let rsQuestionSet = this.state.questionSet.map((q) => {
+            return {...q};
+        });
+        let rsQuestion = rsQuestionSet[this.state.currentQuestion - 1];
+        rsQuestion.selected = answer;
+        rsQuestionSet[this.state.currentQuestion - 1] = rsQuestion;
+        let rsAnswer = [...this.state.answers];
+        rsAnswer[this.state.currentQuestion - 1] = rsQuestion.answer === rsQuestion.selected ? rsQuestion.point : 0;
+        this.setState({ questionSet: rsQuestionSet, answers: rsAnswer });
+        this.nextHandler();
     }
 
     prevHandler = () => {
-
+        if (this.state.currentQuestion > 1) {
+            this.setState((state, props) => {
+                return { currentQuestion: state.currentQuestion - 1 };
+            });
+        }
     }
 
     nextHandler = () => {
-
+        if (this.state.currentQuestion < this.state.questionSet.length) {
+            this.setState((state, props) => {
+                return { currentQuestion: state.currentQuestion + 1 };
+            });
+        }
     }
 
     render() {
         let details = this.state.questionSet[this.state.currentQuestion - 1];
+        let scoreButton = null;
+        let scoreBoard = null;
+        if (this.state.currentQuestion === this.state.questionSet.length) {
+            scoreButton = <button onClick={() => this.setState({showScore: true})}>Show my score</button>
+        }
+        if (this.state.showScore) {
+            scoreBoard = <p>{() => this.state.answers.reduce((acc, curr) => acc + curr)}</p>
+        }
+
 
         return (
             <div>
                 <p>This is question set component</p>
+                <button onClick={this.prevHandler}>Left</button>
                 <p>Step {this.state.currentQuestion} of {this.state.questionSet.length}</p>
-                <Question details={details} chooseAnswer={this.chooseAnswerHandler}/>
+                <button onClick={this.nextHandler}>Right</button>
+                <Question
+                    details={details} 
+                    chooseAnswer={this.chooseAnswerHandler} />
+                {scoreButton}
+                {scoreBoard}
             </div>
         );
     }
