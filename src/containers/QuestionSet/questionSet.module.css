@@ -1,0 +1,33 @@
+.questionSetWrap {
+    display: flex;
+    width: 60%;
+    margin: 5% auto;
+    border: 1px solid black;
+    box-shadow: 5px 10px 18px #9494b8;
+    border-radius: 10px;
+}
+
+.navBack {
+    cursor: pointer;
+    width: 10%;
+    transform: scale(0.2, 0.3);
+}
+
+.navNext {
+    cursor: pointer;
+    width: 10%;
+    transform: scale(0.2, 0.3) rotateY(180deg);
+}
+
+.main {
+    width: 80%;
+    text-align: center;
+}
+
+.showTotalBtn {
+    margin: 0 auto;
+}
+
+.total {
+    text-align: center;
+}

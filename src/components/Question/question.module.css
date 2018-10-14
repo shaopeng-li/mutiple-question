@@ -1,0 +1,13 @@
+.questionWrap {
+    margin: 0 auto;
+}
+
+.title, .question {
+    text-align: center;
+}
+
+.q_btn {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Question from '../../components/Question/question';
+import Header from '../../components/Header/header';
 import classes from './questionSet.module.css';
+import { Button } from 'react-bootstrap';
+import navImg from '../../assets/prev.jpg';
 
 class QuestionSet extends Component {
     state = {
@@ -82,23 +85,27 @@ class QuestionSet extends Component {
         let scoreButton = null;
         let scoreBoard = null;
         if (this.state.currentQuestion === this.state.questionSet.length) {
-            scoreButton = <button onClick={this.showScoreClickHandler}>Show my score</button>
+            scoreButton = <Button className={classes.showTotalBtn} onClick={this.showScoreClickHandler}>Show my score</Button>
         }
         if (this.state.showScore) {
-            scoreBoard = <p>{this.state.score}</p>
+            scoreBoard = <p className={classes.total}>{this.state.score}</p>
         }
 
 
         return (
-            <div>
-                <button onClick={this.prevHandler}>Left</button>
-                <p>Step {this.state.currentQuestion} of {this.state.questionSet.length}</p>
-                <button onClick={this.nextHandler}>Right</button>
-                <Question
-                    details={details} 
-                    chooseAnswer={this.chooseAnswerHandler} />
-                {scoreButton}
-                {scoreBoard}
+            <div className={classes.questionSetWrap}>
+                <img className={classes.navBack} onClick={this.prevHandler} src={navImg}/>
+                <div className={classes.main}>
+                    <Header 
+                        curr={this.state.currentQuestion}
+                        total={this.state.questionSet.length}/>
+                    <Question
+                        details={details} 
+                        chooseAnswer={this.chooseAnswerHandler} />
+                    {scoreButton}
+                    {scoreBoard}
+                </div>
+                <img className={classes.navNext} onClick={this.nextHandler} src={navImg}/>
             </div>
         );
     }

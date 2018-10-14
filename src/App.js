@@ -4,7 +4,8 @@ import QuestionSet from './containers/QuestionSet/questionSet';
 import LandingPage from './components/Landing/LandingPage';
 
 class App extends Component {
-  startAnswerQuestion = () => {
+  startAnswerQuestion = (input) => {
+    console.log(input);
     this.props.history.push('/assignment');
   }
 
