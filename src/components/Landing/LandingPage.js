@@ -8,10 +8,7 @@ const LandingPage = (props) => {
         <div className={classes.landingWraper}>
             <h1>Welcome to mutiple question app!</h1>
             <p>Please click below button for anwser question, you may get your point at last page!</p>
-            <form>
-                <input type="text" onChange={(event) => props.nameChangeHandler(event.target.value)} required></input>
-                <Button onClick={props.start}>Click to start</Button>
-            </form>
+            <Button type="submit" onClick={props.start}>Click to start</Button>
             {/* <button><Link to='/assignment'>Click to start</Link></button> */}
         </div>
     );

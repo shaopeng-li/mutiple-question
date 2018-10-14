@@ -4,24 +4,16 @@ import QuestionSet from './containers/QuestionSet/questionSet';
 import LandingPage from './components/Landing/LandingPage';
 
 class App extends Component {
-  state = {
-    userName: ''
-  }
-
   startAnswerQuestion = () => {
     this.props.history.push('/assignment');
-  }
-
-  nameChangeHandler = (name) => {
-    this.setState({userName: name});
   }
 
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route path='/' exact render={() => (<LandingPage start={this.startAnswerQuestion} nameChangeHandler={this.nameChangeHandler} />)} />
-          <Route path='/assignment' render={() => <QuestionSet userName={this.state.userName} />} />
+          <Route path='/' exact render={() => (<LandingPage start={this.startAnswerQuestion} />)} />
+          <Route path='/assignment' component={QuestionSet} />
         </Switch>
       </div>
     );
