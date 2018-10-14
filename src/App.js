@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import QuestionSet from './containers/QuestionSet/questionSet';
+import LandingPage from './components/Landing/LandingPage';
 
 class App extends Component {
+  startAnswerQuestion = () => {
+    this.props.history.push('/assignment');
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Switch>
+          <Route path='/' exact render={() => (<LandingPage start={this.startAnswerQuestion} />)} />
+          <Route path='/assignment' component={QuestionSet} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
