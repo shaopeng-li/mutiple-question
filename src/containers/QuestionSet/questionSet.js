@@ -84,17 +84,26 @@ class QuestionSet extends Component {
         let details = this.state.questionSet[this.state.currentQuestion - 1];
         let scoreButton = null;
         let scoreBoard = null;
+        let navBackVisibility = null;
+        let navNextVisibility = null;
+
         if (this.state.currentQuestion === this.state.questionSet.length) {
             scoreButton = <Button className={classes.showTotalBtn} onClick={this.showScoreClickHandler}>Show my score</Button>
         }
         if (this.state.showScore) {
             scoreBoard = <p className={classes.total}>{this.state.score}</p>
         }
+        if (this.state.currentQuestion === 1) {
+            navBackVisibility = { visibility: 'hidden' };
+        }
+        if (this.state.currentQuestion === this.state.questionSet.length) {
+            navNextVisibility = { visibility: 'hidden' };
+        }
 
 
         return (
             <div className={classes.questionSetWrap}>
-                <img className={classes.navBack} onClick={this.prevHandler} src={navImg}/>
+                <img className={classes.navBack} style={navBackVisibility} onClick={this.prevHandler} src={navImg} alt="prev"/>
                 <div className={classes.main}>
                     <Header 
                         curr={this.state.currentQuestion}
@@ -105,7 +114,7 @@ class QuestionSet extends Component {
                     {scoreButton}
                     {scoreBoard}
                 </div>
-                <img className={classes.navNext} onClick={this.nextHandler} src={navImg}/>
+                <img className={classes.navNext} style={ navNextVisibility} onClick={this.nextHandler} src={navImg} alt="next"/>
             </div>
         );
     }
