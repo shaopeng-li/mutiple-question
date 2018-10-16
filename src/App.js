@@ -4,8 +4,9 @@ import QuestionSet from './containers/QuestionSet/questionSet';
 import LandingPage from './components/Landing/LandingPage';
 
 class App extends Component {
-  startAnswerQuestion = () => {
-    this.props.history.push('/assignment');
+  startAnswerQuestion = (name) => {
+    // this.props.history.push('/assignment');
+    console.log(name);
   }
 
   render() {
