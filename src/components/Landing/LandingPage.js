@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './landing.module.css';
 import { Button } from 'react-bootstrap';
+import CheckboxContainer from '../../containers/CheckboxContainer/CheckboxContainer';
 
 // const LandingPage = (props) => {
 //     return (
@@ -25,6 +26,10 @@ class LandingPage extends Component {
         console.log(this.textRef.current.value);
     }
 
+    checkboxHandler() {
+
+    }
+
     render() {
         return (
             <div className={classes.landingWraper}>
@@ -34,6 +39,9 @@ class LandingPage extends Component {
                 {/* <Button type="submit" onClick={this.btnClickhandler}>Click to start</Button> */}
                 <Button type="submit" onClick={() => this.props.start(this.textRef.current.value)}>Click to start</Button>
                 {/* <button><Link to='/assignment'>Click to start</Link></button> */}
+                <div>
+                    <CheckboxContainer />
+                </div>
             </div>
         );
     }
